@@ -12,6 +12,12 @@ const questions = inquirer.prompt([
     },
     {
         type: 'input',
+        message: 'What is your email address?',
+        name: 'email',
+        validate: (value)=>{ if(value){return true} else {return "You must enter a value to continue."}}
+    },
+    {
+        type: 'input',
         message: 'What is the title of your project?',
         name: 'title',
         validate: (value)=>{ if(value){return true} else {return "You must enter a value to continue."}}
@@ -70,6 +76,7 @@ const questions = inquirer.prompt([
     contribution,
     license,
     test,
+    email
 
 })=>{
 // markdown template 
@@ -81,8 +88,7 @@ const template =`# ${title}
 *[Credits](#credit)
 *[License](#license)
 
-#Created By: ${name}
-#Description
+# Description
 ${description}
 ## Installation
 ${install}
@@ -95,15 +101,22 @@ ${test}
 ### Credits
 ${credit}
 ### License
-${license}`
+${license}
+### Questions
+If you have any questions, please feel free to reach out! 
+    *GitHub: https://github.com/${name}
+    *Email Address: ${email}`
 createReadMe(title, template);
 });
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function createReadMe(fileName, data) {
+    //fs
+    fs.writeFile(`./${fileName}.md`,data,(err)=>{
+        if(err){
+            console.log(err)
+        }
+        console.log("README has been generated!")
+    })
+}
 
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
