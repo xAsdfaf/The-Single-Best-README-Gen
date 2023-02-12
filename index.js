@@ -60,7 +60,44 @@ const questions = inquirer.prompt([
         validate: (value)=>{ if(value){return true} else {return "You must enter a value to continue."}}
     },
 ]
-)
+).then(({
+    name,
+    title,
+    description,
+    install,
+    usage,
+    credit,
+    contribution,
+    license,
+    test,
+
+})=>{
+// markdown template 
+const template =`# ${title}
+
+*[Installation](#install)
+*[Usage](#usage)
+*[Contribution](#contribution)
+*[Credits](#credit)
+*[License](#license)
+
+#Created By: ${name}
+#Description
+${description}
+## Installation
+${install}
+## Usage
+${usage}
+## Contribution
+${contribution}
+## Testing
+${test}
+### Credits
+${credit}
+### License
+${license}`
+createReadMe(title, template);
+});
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {}
