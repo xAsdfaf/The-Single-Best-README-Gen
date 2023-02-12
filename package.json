@@ -1,0 +1,23 @@
+{
+  "name": "best-read-me-ever",
+  "version": "1.0.0",
+  "description": "generates god-tier readme file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xAsdfaf/The-Single-Best-README-Gen.git"
+  },
+  "author": "xAsdfaf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xAsdfaf/The-Single-Best-README-Gen/issues"
+  },
+  "homepage": "https://github.com/xAsdfaf/The-Single-Best-README-Gen#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "inquirer": "^8.2.4"
+  }
+}
