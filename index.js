@@ -55,7 +55,7 @@ const questions = inquirer.prompt([
     {
         type: 'list',
         message: 'What license would you like to use?',
-        choices: ['The Apache License 2.0', 'The GNU General Public License v3.0', 'The MIT License'],
+        choices: ['Apache 2.0', 'GNU v3.0', 'MIT'],
         name: 'license',
         validate: (value)=>{ if(value){return true} else {return "You must enter a value to continue."}}
     },
@@ -81,6 +81,9 @@ const questions = inquirer.prompt([
 })=>{
 // markdown template 
 const template =`# ${title}
+
+## ${renderLicenseSection(license)} ${renderLicenseBadge(license)}
+### ${renderLicenseLink(license)}
 
 *[Installation](#install)
 *[Usage](#usage)
@@ -120,3 +123,47 @@ function createReadMe(fileName, data) {
     })
 }
 
+// function that returns a license badge based on which license is passed in
+// If there is no license, it returns an empty string
+function renderLicenseBadge(license) {
+    let badge = '';
+    if(license === 'MIT') {
+        badge = '![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)'
+    } else if (license === 'Apache 2.0') {
+        badge = '![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)'
+    } else if (license === 'GNU v3.0') {
+        badge = '![License: GNU v3](https://img.shields.io/badge/License-GNUv3-blue.svg)'
+    } else {
+      badge = ""
+    }
+    return badge;
+  }
+  
+  // function that returns the license link
+  // If there is no license, it returns an empty string
+  function renderLicenseLink(license) {
+    let licenseLink = '';
+      if(license === 'MIT') {
+        licenseLink = 'https://choosealicense.com/licenses/mit/'
+      } else if (license === 'Apache 2.0') {
+        licenseLink = 'http://www.apache.org/licenses/LICENSE-2.0'
+      } else if (license === 'GNU v3.0') {
+        licenseLink = 'https://www.gnu.org/licenses'
+      } else {
+        licenseLink = ""
+      }
+      return licenseLink;
+  }
+  
+  // function that returns the license section of README
+  // If there is no license, it returns an empty string
+  function renderLicenseSection(license) {
+    let licenseSection = ''
+    if(license === 'None') {
+      licenseSection = ''
+    } else {
+      licenseSection =
+      `License: ${license} `
+    }
+    return licenseSection;
+  }
